@@ -1,0 +1,7 @@
+@JobApplication.API_HostAddress = https://localhost:7029
+
+### إغلاق وظيفة محددة بالـ ID
+PUT {{JobApplication.API_HostAddress}}/api/Job/1/close
+Accept: application/json
+
+###
