@@ -24,6 +24,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<JobServices>();
 
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(JobApplication.Application.Features.Jobs.Commands.CreateJob.CreateJobCommands).Assembly);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

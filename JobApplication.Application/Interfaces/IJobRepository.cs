@@ -10,5 +10,7 @@ namespace JobApplication.Application.Interfaces
         void Update(Job job);
         Task<Job?> GetByIdAsync(int id);
         Task SaveChangesAsync();
+        Task Add(Job job);
+      
     }
 }

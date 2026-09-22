@@ -1,4 +1,6 @@
+using JobApplication.Application.DTOs;
 using JobApplication.Application.Interfaces;
+using JobApplication.Domain.Entities;
 using JobApplication.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace JobApplication.Application.Services
 {
-    public class JobServices
+    public class JobServices : IJobServices
     {
         private readonly IJobRepository _jobRepository;
 
@@ -26,6 +28,20 @@ namespace JobApplication.Application.Services
             job.JobStatus = JobStatus.closed;
             _jobRepository.Update(job);
             await _jobRepository.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> CreateJob(CreateJobDto createJobDto)
+        {
+            Job job = new()
+            {
+                Title = createJobDto.Title,
+                Description = createJobDto.Description
+            };
+
+            await _jobRepository.Add(job);
+            await _jobRepository.SaveChangesAsync();
+
             return true;
         }
     }

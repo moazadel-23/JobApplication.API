@@ -13,6 +13,10 @@ namespace JobApplication.Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task Add(Job job)
+        {
+            await _context.Jobs.AddAsync(job);
+        }
         public void Update(Job job)
         {
             _context.Jobs.Update(job);
